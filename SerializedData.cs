@@ -2,12 +2,12 @@
 using System.IO;
 using UnityEngine;
 
-namespace DUCK.Utils
+namespace DUCK.PersistentDataStore
 {
 	/// <summary>
 	/// A persistent data store for serializable objects, identified by their type, or optionally by a unique ID.
 	/// </summary>
-	public static class PersistentDataStore
+	public static class SerializedData
 	{
 		/// <summary>
 		/// The data path used to save persistent objects.
