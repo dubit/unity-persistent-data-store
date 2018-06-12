@@ -12,7 +12,7 @@ namespace DUCK.PersistentDataStore
 		/// <summary>
 		/// The data path used to save persistent objects.
 		/// </summary>
-		private static readonly string saveDataPath = Application.persistentDataPath + "/PersistentData/";
+		private static readonly string saveDataPath = Application.persistentDataPath + "/SerializedData/";
 
 		/// <summary>
 		/// Check if an object of type T exists in the persistent store, optionally with a unique ID.
@@ -32,6 +32,11 @@ namespace DUCK.PersistentDataStore
 		public static void Save<T>(T dataObject, string uid = "")
 		{
 			if (dataObject == null) throw new ArgumentException("Cannot save a null object.");
+
+			if (!Directory.Exists(saveDataPath))
+			{
+				Directory.CreateDirectory(saveDataPath);
+			}
 
 			File.WriteAllText(GetFilePath<T>(uid), JsonUtility.ToJson(dataObject));
 		}
@@ -74,11 +79,6 @@ namespace DUCK.PersistentDataStore
 		// Files identified by a unique ID will have this string appended to their file path. This function determines how.
 		private static string GetFilePath<T>(string uid)
 		{
-			if (!Directory.Exists(saveDataPath))
-			{
-				Directory.CreateDirectory(saveDataPath);
-			}
-
 			var name = typeof(T).ToString()
 				+ ((!string.IsNullOrEmpty(uid))
 				? "-" + uid

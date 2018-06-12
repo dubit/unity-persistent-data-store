@@ -11,18 +11,23 @@ Call the PersistentDataStore.SerializedData API.
 
 ### Saving and loading singleton objects (only one per application)
 
+```c#
 if (SerializedData.Exists<MainConfig>())
 {
     config = SerializedData.Load<MainConfig>();
 }
+```
 
 ...
 
+```c#
 SerializedData.Save(mainConfig);
+```
 
 
 ### Saving and loading uniquely-identified objects (as many as necessary)
 
+```c#
 if (SerializedData.Exists<SaveFile>(thisPlayerId))
 {
     saveFile = SerializedData.Load<SaveFile>(thisPlayerId);
@@ -36,3 +41,4 @@ SerializedData.Delete<SaveFile>(thisPlayerId);
 ...
 
 SerializedData.Save<SaveFile>(thisPlayerId);
+```
