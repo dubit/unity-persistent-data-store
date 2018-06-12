@@ -1,0 +1,12 @@
+{
+    "name": "DUCK.PersistentDataStore",
+    "references": [
+        "persistent-data-store"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
